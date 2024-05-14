@@ -1,26 +1,26 @@
 import express from "express";
-import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
 import cors from "cors";
 import EventEmitter from 'events';
-dotenv.config();
 const app = express();
 EventEmitter.defaultMaxListeners = 100; 
 app.use(cors());
 app.use(express.json());
 
-connectDB(process.env.DB);
+const PORT = 5000;
+const DB = "mongodb+srv://21it147:0000@cluster0.9jm2xzm.mongodb.net/";
+connectDB(DB);
 
 
-app.listen(process.env.PORT,()=>{
-    console.log(`Server is running on port ${process.env.PORT}`)
+app.listen(PORT,()=>{
+    console.log(`Server is running on port ${PORT}`)
 })
 
 
-import userRoute from "../backend/routes/userauth.route.js";
-app.use("/api/v1/user",userRoute);
+import userRoute from "./routes/userauth.route.js";
+app.use("/user",userRoute);
 
 import imageRoute from "./routes/image.route.js";
-app.use("/api/v1/image",imageRoute);
+app.use("/image",imageRoute);
 
-app.get('/',(req,res)=>{res.status(200).send("This is Backend")})
+app.use('/',(req,res)=>{res.status(200).send("This is Backend")})

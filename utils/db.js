@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const connectDB = (DB) => {
   mongoose
     .connect(DB)
