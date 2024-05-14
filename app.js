@@ -22,3 +22,5 @@ app.use("/api/v1/user",userRoute);
 
 import imageRoute from "./routes/image.route.js";
 app.use("/api/v1/image",imageRoute);
+
+app.get('/',(req,res)=>{res.status(200).send("This is Backend")})
